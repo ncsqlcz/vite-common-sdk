@@ -1,9 +1,8 @@
-import type {
-  AxiosResponse,
+import type { AxiosResponse,
   InternalAxiosRequestConfig,
   CreateAxiosDefaults,
-  AxiosRequestConfig,
-} from 'axios'
+  AxiosRequestConfig } from 'axios'
+
 export interface RequestInterceptors<T> {
   // 请求拦截
   requestInterceptors?: (
@@ -24,4 +23,10 @@ export interface RequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 }
 export interface CancelRequestSource {
   [index: string]: () => void
+}
+
+export interface MyResponse<T> {
+  statusCode: number
+  desc: string
+  result: T
 }

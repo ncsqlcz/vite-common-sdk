@@ -1,13 +1,7 @@
 import { AxiosResponse } from 'axios'
 import Request from './request'
 
-import type { RequestConfig } from './request/types'
-
-export interface MyResponse<T> {
-  statusCode: number
-  desc: string
-  result: T
-}
+import type { RequestConfig, MyResponse } from './request/types'
 
 // 重写返回类型
 interface MyRequestConfig<T, R> extends RequestConfig<MyResponse<R>> {

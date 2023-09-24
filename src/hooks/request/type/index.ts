@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+
 export interface IUseRequestOption<T = any> {
   // 是否开启防抖 时长
   debounce?: boolean

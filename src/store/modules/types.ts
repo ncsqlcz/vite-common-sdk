@@ -1,9 +1,8 @@
-import {
-  IPermissionList,
+import { IPermissionList,
   IRoleList,
   IUserDetail,
-  IUserList,
-} from '/@/api/types/mock'
+  IUserList } from '../../../@/api/types/mock'
+
 export interface CountInterface {
   count: number
 }

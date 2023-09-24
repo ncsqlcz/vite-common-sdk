@@ -1,4 +1,3 @@
-// 需要安装依赖:  npm i eslint-define-config
 const { defineConfig } = require('eslint-define-config')
 
 module.exports = defineConfig({
@@ -22,6 +21,16 @@ module.exports = defineConfig({
       jsx: true,
     },
   },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      // typescript: {
+      // },
+      // alias: true,
+    },
+  },
   // https://eslint.bootcss.com/docs/user-guide/configuring#specifying-globals
   globals: {
   },
@@ -30,6 +39,7 @@ module.exports = defineConfig({
     'eslint:recommended',
     'plugin:vue/vue3-essential',
     'plugin:vue/vue3-recommended',
+    // '@antfu/eslint-config',
   ],
   rules: {
     // 禁用语句分号
@@ -68,13 +78,19 @@ module.exports = defineConfig({
     // 禁止可以在有更简单的可替代的表达式时使用三元操作符
     'no-unneeded-ternary': 'error',
     // 禁止重复模块导入
-    'no-duplicate-imports': 'error',
+    'no-duplicate-imports': 0,
     // 禁止在对象中使用不必要的计算属性
     'no-useless-computed-key': 'error',
     // 禁止不必要的转义字符
     'no-useless-escape': 0,
     // 禁用 continue 语句
     'no-continue': 0,
+    // 允许未使用的变量
+    'no-unused-vars': 0,
+    // 禁止未使用的表达式，单行表达式除外
+    'no-unused-expressions': ['error', {
+      allowShortCircuit: true,
+    }],
     // 强制使用一致的缩进
     indent: ['error', 2, {
       SwitchCase: 1,
@@ -113,10 +129,8 @@ module.exports = defineConfig({
       functions: 'never',
     }],
     'no-multiple-empty-lines': 2,
-    // "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    // "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    'no-console': 'off',
-    'no-debugger': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-constant-condition': 2, // 禁止在条件中使用常量表达式 if(true) if(1)
     'no-trailing-spaces': 1, // 一行结束后面不要有空格
     'consistent-this': [2, 'that'], // this别名

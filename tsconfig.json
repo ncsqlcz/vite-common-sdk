@@ -9,6 +9,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
     "lib": [
       "esnext",
       "dom"
@@ -20,7 +22,7 @@
     "baseUrl": ".",
     "paths": {
       // 用于设置模块名到基于baseUrl的路径映射
-      "/@/*": [
+      "@/*": [
         "src/*"
       ],
       "/cpns/*": [
@@ -33,6 +35,9 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules/*",
   ],
   "references": [
     {

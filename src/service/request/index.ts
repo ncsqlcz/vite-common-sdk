@@ -1,16 +1,16 @@
 import axios, { AxiosResponse } from 'axios'
 import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
-import type {
-  RequestConfig,
+import type { RequestConfig,
   RequestInterceptors,
-  CreateRequestConfig,
-} from './types'
+  CreateRequestConfig } from './types'
 
 class Request {
   // axios 实例
   instance: AxiosInstance
+
   // 拦截器对象
   interceptorsObj?: RequestInterceptors<AxiosResponse>
+
   // * 存放取消请求控制器Map
   abortControllerMap: Map<string, AbortController>
 
@@ -28,17 +28,17 @@ class Request {
         this.abortControllerMap.set(url, controller)
         return res
       },
-      (err: any) => err,
+      (err: any) => err
     )
 
     // 使用实例拦截器
     this.instance.interceptors.request.use(
       this.interceptorsObj?.requestInterceptors,
-      this.interceptorsObj?.requestInterceptorsCatch,
+      this.interceptorsObj?.requestInterceptorsCatch
     )
     this.instance.interceptors.response.use(
       this.interceptorsObj?.responseInterceptors,
-      this.interceptorsObj?.responseInterceptorsCatch,
+      this.interceptorsObj?.responseInterceptorsCatch
     )
     // 全局响应拦截器保证最后执行
     this.instance.interceptors.response.use(
@@ -48,9 +48,10 @@ class Request {
         this.abortControllerMap.delete(url)
         return res.data
       },
-      (err: any) => err,
+      (err: any) => err
     )
   }
+
   request<T>(config: RequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
@@ -73,6 +74,7 @@ class Request {
       // .finally(() => {})
     })
   }
+
   /**
    * 取消全部请求
    */
@@ -82,6 +84,7 @@ class Request {
     }
     this.abortControllerMap.clear()
   }
+
   /**
    * 取消指定的请求
    * @param url 待取消的请求URL
