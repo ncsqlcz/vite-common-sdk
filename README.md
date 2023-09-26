@@ -1,6 +1,20 @@
 # 项目说明
 
-## 1、commit 规范
+## 1、项目介绍
+
+  1. 安装
+
+   ```javascript
+   pnpm install
+   ```
+
+   没安装pnpm的，可以通过以下命令安装一下：
+
+   ```javascript
+   npm install -g pnpm
+   ```
+
+## 2、commit 规范
 
 | 类型 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ |
@@ -18,7 +32,7 @@
 | release     | 发布新版本                                                   |
 | workflow    | 工作流相关文件修改                                           |
 
-## 2、推荐插件
+## 3、推荐插件
 
   1. Random Something（强推）
   2. Error Lens (好用)
@@ -27,7 +41,7 @@
   5. Tailwind CSS IntelliSense
   6. Surround
 
-## 3、要学习的东西
+## 4、要学习的东西
 
   1. [Vue3](https://cn.vuejs.org/guide/essentials/application.html)
   2. [TypeScript](https://www.tslang.cn/docs/handbook/basic-types.html)
@@ -38,6 +52,6 @@
   7. [**template code**](https://juejin.cn/post/7066008052281016327)
   8. [参考Demo](https://demo.mineadmin.com/#/dashboard)：[github地址](https://github.com/kanyxmo/MineAdmin)
 
-## 4、注意事项
+## 5、注意事项
 
-  1.如果ESlint插件不生效（比如保存不自动格式化代码）。请尝试降低插件版本**2.2.6**
+  1.如果ESlint插件不生效（比如保存不自动格式化代码）。请尝试降低插件版本**2.4.0**

@@ -1,5 +1,6 @@
-import { defineConfig, loadEnv, ConfigEnv } from 'vite'
-import { resolve } from 'path'
+import { resolve } from 'node:path'
+import type { ConfigEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -8,7 +9,7 @@ import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import { viteMockServe } from 'vite-plugin-mock'
 import requireTransform from 'vite-plugin-require-transform'
 
-export default defineConfig(({ mode } : ConfigEnv) => {
+export default defineConfig(({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
   return {
     base: './',
@@ -21,6 +22,12 @@ export default defineConfig(({ mode } : ConfigEnv) => {
         fileRegex: /.ts$|.tsx$|.vue$/,
       }),
       AutoImport({
+        include: [
+          /\.[jt]sx/,
+          /\.vue$/,
+          /\.vue\?vue/, // vue
+          /\.md/,
+        ],
         resolvers: [ArcoResolver()],
         // 调整自动引入的文件位置
         dts: 'src/type/auto-import.d.ts',
@@ -60,7 +67,7 @@ export default defineConfig(({ mode } : ConfigEnv) => {
         '/api': {
           target: env.VITE_APP_API_BASE_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          rewrite: path => path.replace(/^\/api/, ''),
         },
       },
     },
