@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const handleClick = () => {
+function handleClick() {
   console.log('handleClick')
 }
 </script>
@@ -9,4 +9,5 @@ const handleClick = () => {
     arco
   </a-button>
 </template>
+
 <style lang="less" scoped></style>

@@ -1,4 +1,4 @@
-import { IPermissionList,
+import type { IPermissionList,
   IRoleList,
   IUserDetail,
   IUserList } from '../../../@/api/types/mock'

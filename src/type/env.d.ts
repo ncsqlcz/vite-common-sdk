@@ -5,7 +5,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_KEY: string
   // 定义更多环境变量
 }
-// eslint-disable-next-line
+ 
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }

@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from 'axios'
-import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
-import type { RequestConfig,
-  RequestInterceptors,
-  CreateRequestConfig } from './types'
+import axios from 'axios'
+import type { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type { CreateRequestConfig,
+  RequestConfig,
+  RequestInterceptors } from './types'
 
 class Request {
   // axios 实例
@@ -28,17 +28,17 @@ class Request {
         this.abortControllerMap.set(url, controller)
         return res
       },
-      (err: any) => err
+      (err: any) => err,
     )
 
     // 使用实例拦截器
     this.instance.interceptors.request.use(
       this.interceptorsObj?.requestInterceptors,
-      this.interceptorsObj?.requestInterceptorsCatch
+      this.interceptorsObj?.requestInterceptorsCatch,
     )
     this.instance.interceptors.response.use(
       this.interceptorsObj?.responseInterceptors,
-      this.interceptorsObj?.responseInterceptorsCatch
+      this.interceptorsObj?.responseInterceptorsCatch,
     )
     // 全局响应拦截器保证最后执行
     this.instance.interceptors.response.use(
@@ -48,23 +48,23 @@ class Request {
         this.abortControllerMap.delete(url)
         return res.data
       },
-      (err: any) => err
+      (err: any) => err,
     )
   }
 
   request<T>(config: RequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 如果我们为单个请求设置拦截器，这里使用单个请求的拦截器
-      if (config.interceptors?.requestInterceptors) {
+      if (config.interceptors?.requestInterceptors) 
         config = config.interceptors.requestInterceptors(config as any)
-      }
+      
       this.instance
         .request<any, T>(config)
-        .then(res => {
+        .then((res) => {
           // 如果我们为单个响应设置拦截器，这里使用单个响应的拦截器
-          if (config.interceptors?.responseInterceptors) {
+          if (config.interceptors?.responseInterceptors) 
             res = config.interceptors.responseInterceptors(res)
-          }
+          
 
           resolve(res)
         })
@@ -79,9 +79,9 @@ class Request {
    * 取消全部请求
    */
   cancelAllRequest() {
-    for (const [, controller] of this.abortControllerMap) {
+    for (const [, controller] of this.abortControllerMap) 
       controller.abort()
-    }
+    
     this.abortControllerMap.clear()
   }
 
